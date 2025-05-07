@@ -20,7 +20,7 @@ parser.add_argument('--dropout', type=float, default=0.5, help='Dropout rate (1 
 parser.add_argument('--lr', type=float, default=0.002, help='Initial learning rate.')        #原来
 parser.add_argument('--weight_decay', type=float, default=5e-4, help='Weight decay (L2 loss on parameters).')
 parser.add_argument('--cv_num', type=int, default=5, help='number of fold')
-parser.add_argument('--batch', type=int, default=512, help='batch size')
+parser.add_argument('--batch', type=int, default=2048, help='batch size')
 parser.add_argument('--dim', type=int, default=256, help='embedding size')  # 原 128
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -65,7 +65,7 @@ for train_index, test_index in kf.split(edge):
     train_idx.append(train_index)
     test_idx.append(test_index)
 
-for i in range(args.cv_num):
+for i in range(1):
     auc_best = 0
     aupr_best = 0
     AUC = 0
